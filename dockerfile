@@ -2,15 +2,16 @@ FROM node:20-alpine
 
 WORKDIR /usr/src/app
 
+# Install global dependencies
 RUN npm install -g \
-@modelcontextprotocol/server-filesystem \
-@modelcontextprotocol/server-git \
-@modelcontextprotocol/server-memory \
-@modelcontextprotocol/server-sequential-thinking
+    @modelcontextprotocol/server-filesystem \
+    @modelcontextprotocol/server-memory \
+    @modelcontextprotocol/server-sequential-thinking
 
-COPY start-all.sh .
-RUN chmod +x start-all.sh
+# Copy manager script
+COPY start-manager.js .
 
-EXPOSE 5001 5002 5003 5004
+# Expose MCP ports
+EXPOSE 5001 5002 5003
 
-CMD ["./start-all.sh"]
+CMD ["node", "start-manager.js"]
