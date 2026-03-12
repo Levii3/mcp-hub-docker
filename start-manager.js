@@ -3,20 +3,20 @@ const { exec } = require("child_process");
 const MCPs = [
   {
     name: "filesystem",
-    cmd: "npx @modelcontextprotocol/server-filesystem /mnt/host --port 5001",
+    cmd: "npx @modelcontextprotocol/server-filesystem /mnt/host",
   },
   {
     name: "memory",
-    cmd: "npx @modelcontextprotocol/server-memory --port 5002",
+    cmd: "npx @modelcontextprotocol/server-memory",  // memory usually runs on stdio
   },
   {
     name: "sequential-thinking",
-    cmd: "npx @modelcontextprotocol/server-sequential-thinking --port 5003",
+    cmd: "npx @modelcontextprotocol/server-sequential-thinking", // also on stdio
   },
 ];
 
-// Start each MCP dynamically
-MCPs.forEach(mcp => {
+// Launch MCPs
+MCPs.forEach((mcp) => {
   const child = exec(mcp.cmd, (err, stdout, stderr) => {
     if (err) console.error(`${mcp.name} error:`, err);
   });
