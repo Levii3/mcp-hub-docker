@@ -1,16 +1,13 @@
 version: "3.9"
 
 services:
-  mcp-hub:
+  mcp-manager:
     build: .
-    container_name: mcp_hub
+    container_name: mcp_manager
     ports:
-      - "5001:5001"   # Filesystem MCP
-      - "5002:5002"   # Fetch MCP
-      - "5003:5003"   # Git MCP
-      - "5004:5004"   # Memory MCP
-      - "5005:5005"   # Sequential Thinking MCP
+      - "5001:5001"
+      - "5002:5002"
+      - "5003:5003"
     volumes:
-      # Mount the entire home folder for full access
-      - /Users/Me:/mnt/host:rw
+      - /Users/Me:/mnt/host:rw   # full access to your home folder
     restart: unless-stopped
