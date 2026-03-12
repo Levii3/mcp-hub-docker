@@ -1,0 +1,16 @@
+version: "3.9"
+
+services:
+  mcp-hub:
+    build: .
+    container_name: mcp_hub
+    ports:
+      - "5001:5001"   # Filesystem MCP
+      - "5002:5002"   # Fetch MCP
+      - "5003:5003"   # Git MCP
+      - "5004:5004"   # Memory MCP
+      - "5005:5005"   # Sequential Thinking MCP
+    volumes:
+      # Mount the entire home folder for full access
+      - /Users/Me:/mnt/host:rw
+    restart: unless-stopped
